@@ -15,3 +15,7 @@ variable "private_cidr" {
 variable "route_cidr" {
   default = "0.0.0.0/0"
 }
+
+variable "instance_type" {
+  default = "t2.micro"
+}
