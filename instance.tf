@@ -15,11 +15,11 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.instance_type
   associate_public_ip_address = true
-  key_name = "main"
-  subnet_id     = aws_subnet.public[0].id
+  key_name                    = "main"
+  subnet_id                   = aws_subnet.public[0].id
 
 
   tags = {
