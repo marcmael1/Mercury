@@ -3,7 +3,7 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "${var.env_code}-vpc"
+    Name = var.env_code
   }
 }
 
@@ -14,7 +14,7 @@ resource "aws_subnet" "public" {
   cidr_block = var.public_cidr[count.index]
 
   tags = {
-    Name = "${var.env_code}-public ${count.index}"
+    Name = "${var.env_code}-public${count.index}"
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "${var.env_code}-igw"
+    Name = var.env_code
   }
 }
 
@@ -67,7 +67,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "${var.env_code}-private ${count.index}"
+    Name = "${var.env_code}-private${count.index}"
   }
 }
 
@@ -84,7 +84,7 @@ resource "aws_eip" "nat" {
   vpc = true
 
   tags = {
-    "Name" = "${var.env_code}-nat ${count.index}"
+    "Name" = "${var.env_code}-nat${count.index}"
   }
 }
 
@@ -96,6 +96,6 @@ resource "aws_nat_gateway" "ngw" {
   depends_on    = [aws_internet_gateway.igw]
 
   tags = {
-    Name = "${var.env_code}-ngw ${count.index}"
+    Name = "${var.env_code}-ngw${count.index}"
   }
 }
