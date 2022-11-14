@@ -1,4 +1,4 @@
-data "aws_ami" "ubuntu" {
+data "aws_ami" "webserver" {
   most_recent = true
 
   filter {
@@ -15,7 +15,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.webserver.id
   instance_type               = var.instance_type
   associate_public_ip_address = true
   key_name                    = "main"
